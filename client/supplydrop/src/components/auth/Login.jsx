@@ -8,7 +8,7 @@ function Login() {
 
     const [login, setLogin] = useState(...state);
 
-    return() {
+    return(
         <div>
             <form onSubmit={handleSubmit}>
                 <div className='field email'>
@@ -25,8 +25,8 @@ function Login() {
                 </div>
             </form>
         </div>
-    }
+    )
 
-}
+};
 
 export default Login;
