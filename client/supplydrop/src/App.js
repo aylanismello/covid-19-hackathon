@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import fire from './config/firebase';
-
+import Login from './components/auth/Login'
 
 function App() {
   const [ user, setUser ] = useState({ user: null })

@@ -11,15 +11,22 @@ function Login() {
     return() {
         <div>
             <form onSubmit={handleSubmit}>
-                <div className='field'>
-                    <label className='label'> E-Mail </label>
+                <div className='field email'>
+                    <label className='label' htmlFor='email'> E-Mail </label>
                     <div className='control'>
-                        <input class></input>
+                        <input type='email' class/>
                     </div>
-
+                </div>
+                <div className='field password'>
+                    <label htmlFor="password">Password</label>
+                    <div className='control'>
+                        <input type="password"/>
+                    </div>
                 </div>
             </form>
         </div>
     }
 
 }
+
+export default Login;
