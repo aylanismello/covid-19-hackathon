@@ -9,6 +9,9 @@
       name="description"
       content="Web site created using create-react-app"
     />
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -40,4 +43,27 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.13.0/firebase-app.js"></script>
+  
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/7.13.0/firebase-analytics.js"></script>
+  
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyCY_qBRcje4QmwAQCe_SWaGgoDznoCvsZA",
+      authDomain: "supplydrop-e7947.firebaseapp.com",
+      databaseURL: "https://supplydrop-e7947.firebaseio.com",
+      projectId: "supplydrop-e7947",
+      storageBucket: "supplydrop-e7947.appspot.com",
+      messagingSenderId: "692804449781",
+      appId: "1:692804449781:web:69785e66fbf8e318f01cbc",
+      measurementId: "G-2TCXVNEM01"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
 </html>
