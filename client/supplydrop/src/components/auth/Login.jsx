@@ -1,16 +1,31 @@
 import React, { useState, useEffect } from 'react';
 
 function Login() {
-    const state = {
-        email: null,
-        password: null,
+    const [login, setLogin] = useState({email: null, password: null});
+
+    const handleChange = (e) => {
+        e.persist();
+
+        setLogin(login => ({
+            ...login,
+            [e.target.name]: e.target.value
+        }))
     }
 
-    const [login, setLogin] = useState(...state);
+    const handleSubmit = e => {
+        e.preventDefault();
+        const { email, password } = login;
+        const user = {
+            email: email,
+            password: password,
+        }
 
+        this.props.login(user);
+    };
+    
     return(
         <div>
-            <form onSubmit={handleSubmit}>
+            <form >
                 <div className='field email'>
                     <label className='label' htmlFor='email'> E-Mail </label>
                     <div className='control'>
@@ -23,6 +38,7 @@ function Login() {
                         <input type="password"/>
                     </div>
                 </div>
+                <input type='submit' onSubmit={handleSubmit}>Submit</input>
             </form>
         </div>
     )
