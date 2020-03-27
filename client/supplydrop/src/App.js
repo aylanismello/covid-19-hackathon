@@ -1,10 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
+import fire from './config/firebase';
 
 
 function App() {
+  const [ user, setUser ] = useState({ user: null })
+
+  const authListener = () => { fire.auth().onAuthStateChanged((user) =>{
+    if (user) {
+      setUser(user[0] = user);
+    } else {
+      setUser( user[0] = null);
+    }
+  })
+
+  };
   return (
     <div className="App">
-      blank
+      {
+        !user ? ("User Logged") : ("No User")
+      }
     </div>
   );
 }
