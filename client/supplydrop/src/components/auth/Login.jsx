@@ -20,6 +20,8 @@ const Login = ({history}) => {
         }, [history]
     )
 
+
+
     const {currUser} = useContext(AuthContext); 
 
     if (currUser) {
@@ -43,6 +45,7 @@ const Login = ({history}) => {
           </div>
           <button type="submit">Log In</button>
         </form>
+        
       </div>
     );
 
