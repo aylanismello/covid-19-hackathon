@@ -39,7 +39,11 @@ const FacilitiesSchema = new Schema({
   verified: {
     type: Boolean,
     required: true
-  }
+  },
+  reps: [{
+    type: Schema.Types.ObjectId,
+    ref: 'user'
+  }]
 
 }) 
 
