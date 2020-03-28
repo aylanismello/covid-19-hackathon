@@ -1,51 +1,48 @@
-import React, { useState } from 'react';
+import React, { useCallback, useContext } from 'react';
+import { withRouter, Redirect } from 'react-router';
+import app from '../../config/firebase';
+import { AuthContext } from './Auth';
 
 function Login() {
-    const [inputs, setInputs] = useState({email: " ", password: " "});
-    const [ submit, setSubmit ] = useState(false);
-    const { email, password } = inputs;
+    const handleLogin = useCallback(
+        async e => {
+            e.preventDefault();
 
-    function handleChange(e) {
-        const  { name, value } = e.target;
-        setInputs(inputs => ({
-            ...inputs,
-            [name]: value
-        })
-    )};
-
-    const handleSubmit = e => {
-        e.preventDefault();
-        
-        setSubmit(true);
-        if (username && password){
-            
-        }
-
-        this.props.login(user);
-    };
-
-    return(
-        <div>
-            <form onChange={handleChange}>
-                <div className='field email'>
-                    <label className='label' htmlFor='email'> E-Mail
-                    <div className='control'>
-                        <input type='email' name="email" value={handleChange(email)} />
-                    </div>
-                     </label>
-                </div>
-                <div className='field password'>
-                    <label htmlFor="password">Password
-                    <div className='control'>
-                        <input type="password" name="password" value={handleChange(password)}/>
-                    </div>
-                    </label>
-                </div>
-                <button type='submit' onSubmit={handleSubmit}>Submit</button>
-            </form>
-        </div>
+            const { email, password } = e.target.elements;
+            try {
+                await app
+                    .auth()
+                    .signInWithEmailAndPassword(email.value, password.value);
+                window.history.push('/');
+            } catch (error) {
+                alert(error);
+            }
+        }, []
     )
+
+    const {currUser} = useContext(AuthContext); 
+
+    if (currUser) {
+        return <Redirect to='/' />;
+    }
+
+    return (
+      <div>
+        <form onSubmit={handleLogin}>
+          <div>
+            <label htmlFor="email">
+              <input type="email" name="email" />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="password">
+                <input type="password" name="password"/>
+            </label>
+          </div>
+        </form>
+      </div>
+    );
 
 };
 
-export default Login;
+export default withRouter(Login);

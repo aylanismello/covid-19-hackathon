@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import {withRouter} from 'react-router';
-import app from './Auth';
+import app from '../../config/firebase';
 
 function SignUp() {
     const handleSignUp = useCallback( async e => {
@@ -11,11 +11,11 @@ function SignUp() {
             await app
                 .auth()
                 .createUserWithEmailAndPassword(email.value, password.value);
-                history.push("/");
+                window.history.push("/");
         } catch (error){
             alert(error);
         }
-    }, [history] );
+    }, [] );
 
     return (
       <div>
@@ -39,4 +39,4 @@ function SignUp() {
     );
 }
 
-export default withRouter(SignUp);
+export default withRouter( SignUp );
