@@ -1,48 +1,51 @@
-import React, { useState, useEffect } from 'react';
+import React, { useCallback, useContext } from 'react';
+import { withRouter, Redirect } from 'react-router';
+import app from '../../config/firebase';
+import { AuthContext } from './Auth';
 
-function Login() {
-    const [login, setLogin] = useState({email: null, password: null});
+const Login = ({history}) => {
+    const handleLogin = useCallback(
+        async e => {
+            e.preventDefault();
 
-    const handleChange = (e) => {
-        e.persist();
+            const { email, password } = e.target.elements;
+            try {
+                await app
+                    .auth()
+                    .signInWithEmailAndPassword(email.value, password.value);
+                history.push('/');
+            } catch (error) {
+                alert(error);
+            }
+        }, [history]
+    )
 
-        setLogin(login => ({
-            ...login,
-            [e.target.name]: e.target.value
-        }))
+    const {currUser} = useContext(AuthContext); 
+
+    if (currUser) {
+        return <Redirect to='/' />;
     }
 
-    const handleSubmit = e => {
-        e.preventDefault();
-        const { email, password } = login;
-        const user = {
-            email: email,
-            password: password,
-        }
-
-        this.props.login(user);
-    };
-    
-    return(
-        <div>
-            <form >
-                <div className='field email'>
-                    <label className='label' htmlFor='email'> E-Mail </label>
-                    <div className='control'>
-                        <input type='email' class/>
-                    </div>
-                </div>
-                <div className='field password'>
-                    <label htmlFor="password">Password</label>
-                    <div className='control'>
-                        <input type="password"/>
-                    </div>
-                </div>
-                <input type='submit' onSubmit={handleSubmit}>Submit</input>
-            </form>
-        </div>
-    )
+    return (
+      <div>
+        <form onSubmit={handleLogin}>
+          <div>
+            <label htmlFor="email">
+              Email
+              <input type="email" name="email" />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="password">
+              Password
+                <input type="password" name="password"/>
+            </label>
+          </div>
+          <button type="submit">Log In</button>
+        </form>
+      </div>
+    );
 
 };
 
-export default Login;
+export default withRouter(Login);
