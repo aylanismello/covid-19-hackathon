@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import {withRouter} from 'react-router';
 import app from '../../config/firebase';
 
-function SignUp() {
+const SignUp = ({history}) => {
     const handleSignUp = useCallback( async e => {
         e.preventDefault();
 
@@ -11,11 +11,11 @@ function SignUp() {
             await app
                 .auth()
                 .createUserWithEmailAndPassword(email.value, password.value);
-                window.history.push("/");
+                history.push("/");
         } catch (error){
             alert(error);
         }
-    }, [] );
+    }, [history] );
 
     return (
       <div>
