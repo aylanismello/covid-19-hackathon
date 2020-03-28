@@ -1,44 +1,47 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 function Login() {
-    const [login, setLogin] = useState({email: null, password: null});
+    const [inputs, setInputs] = useState({email: " ", password: " "});
+    const [ submit, setSubmit ] = useState(false);
+    const { email, password } = inputs;
 
-    const handleChange = (e) => {
-        e.persist();
-
-        setLogin(login => ({
-            ...login,
-            [e.target.name]: e.target.value
-        }))
-    }
+    function handleChange(e) {
+        const  { name, value } = e.target;
+        setInputs(inputs => ({
+            ...inputs,
+            [name]: value
+        })
+    )};
 
     const handleSubmit = e => {
         e.preventDefault();
-        const { email, password } = login;
-        const user = {
-            email: email,
-            password: password,
+        
+        setSubmit(true);
+        if (username && password){
+            
         }
 
         this.props.login(user);
     };
-    
+
     return(
         <div>
-            <form >
+            <form onChange={handleChange}>
                 <div className='field email'>
-                    <label className='label' htmlFor='email'> E-Mail </label>
+                    <label className='label' htmlFor='email'> E-Mail
                     <div className='control'>
-                        <input type='email' class/>
+                        <input type='email' name="email" value={handleChange(email)} />
                     </div>
+                     </label>
                 </div>
                 <div className='field password'>
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="password">Password
                     <div className='control'>
-                        <input type="password"/>
+                        <input type="password" name="password" value={handleChange(password)}/>
                     </div>
+                    </label>
                 </div>
-                <input type='submit' onSubmit={handleSubmit}>Submit</input>
+                <button type='submit' onSubmit={handleSubmit}>Submit</button>
             </form>
         </div>
     )
