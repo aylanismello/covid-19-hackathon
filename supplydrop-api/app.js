@@ -6,9 +6,6 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const path = require('path');
 
-
-
-
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('../client/build'));
   app.get('/', (req, res) => {

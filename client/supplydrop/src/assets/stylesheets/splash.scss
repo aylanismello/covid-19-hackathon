@@ -1,0 +1,63 @@
+.landing-page-container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+
+    .main { 
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        grid-column-gap: 5%;
+        grid-row-gap: 0px;
+        padding-top: 10vh;
+        
+        
+        .left-col {
+            height: auto;
+            width: 50vw;
+            grid-area: 1 / 1 / 4 / 2;
+            display: grid;
+            padding-left: 5vh;
+            
+            .main-title-text {
+                font-size: 3rem;
+                font-weight: bold;
+                grid-area: 1 / 1 / 2 / 2;
+                place-self: center center;
+                text-align: left;
+            }
+            .main-body-text{
+                place-self: start;
+                grid-area: 2 / 1 / 3 / 2;
+            }
+            .main-button-container {
+                grid-area: 3 / 1 / 4 / 2;
+
+                button {
+                    &.signup {
+                        background-color: #2987CD;
+                        color: whitesmoke;
+                        font-weight: bold;
+                        border-radius: 4px;
+                        padding-left: 3%;
+                        padding-right: 3%;
+                        padding-top: 1%;
+                        padding-bottom: 1%;
+                    }
+                }
+            }
+
+        }
+        .right-col {
+            grid-area: 1 / 2 / 4 / 3;
+            height: auto;
+            width: 50vw;
+            padding-right: 10vh;
+            .splash-image {
+                height: auto;
+                width: 75%;
+            }
+        }
+        
+    }
+}
