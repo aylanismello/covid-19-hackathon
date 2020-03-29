@@ -5,10 +5,6 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const path = require('path');
-const admin = require('firebase-admin');
-
-
-
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('../client/build'));

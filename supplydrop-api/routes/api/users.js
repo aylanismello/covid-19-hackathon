@@ -6,8 +6,6 @@ const keys = require('../../config/keys');
 const passport = require('passport');
 const validateRegisterInput = require('../../validation/register_valid');
 
-
-
 router.post('/login', (req, res) => {
   const email = req.body.email;
  User.findOne({
