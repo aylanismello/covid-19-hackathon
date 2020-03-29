@@ -1,10 +1,7 @@
 import React from "react";
-import app from "../../config/firebase";
-import * as firebase from 'firebase/app';
 import splash from './SplashImage.jpg';
 
 const Home = () => {
-
   return (
     <div className="landing-page-container">
       <div className="landing-page main">
@@ -18,7 +15,8 @@ const Home = () => {
             match those in need with those able to give securely and safely.
           </p>
           <div className='main-button-container'>
-            <button className="signup button">Sign Up</button>
+            {/* Create Modal For Sign Up */}
+            <button className="signup button">Sign Up</button> 
           </div>
         </div>
 
