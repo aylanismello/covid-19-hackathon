@@ -5,9 +5,6 @@ const jwt = require('jsonwebtoken');
 const keys = require('../../config/keys');
 const passport = require('passport');
 const validateRegisterInput = require('../../validation/register_valid');
-const validateLoginInput = require('../../validation/login_valid')
-
-
 
 router.post('/login', (req, res) => {
 
@@ -63,7 +60,6 @@ bcrypt.compare(password, user.password)
       });
     }
   })
-       
 })
 
 
@@ -101,6 +97,9 @@ router.post('/register', (req, res) => {
                 pending_items: [],
                 admin: false
               })
+ 
+              newUser.save()
+                .then(user => res.json(user))
               bcrypt.genSalt(10, (err, salt) => {
                 bcrypt.hash(newUser.password, salt, (err, hash) => {
                   if (err) throw err;

@@ -2,6 +2,7 @@ import React, { useCallback, useContext } from 'react';
 import { withRouter, Redirect } from 'react-router';
 import app from '../../config/firebase';
 import { AuthContext } from './Auth';
+import SignUp from './SignUp';
 
 const Login = ({history}) => {
     const handleLogin = useCallback(
@@ -20,12 +21,12 @@ const Login = ({history}) => {
         }, [history]
     )
 
-  const register = function(){
-    return(history.push('/signup'))
-  }
+    const handleClick = e => {
+      e.preventDefault();
+      history.push('/signup');
+    };
 
     const {currUser} = useContext(AuthContext); 
-
     if (currUser) {
         return <Redirect to='/' />;
     }
@@ -47,7 +48,8 @@ const Login = ({history}) => {
           </div>
           <button type="submit">Log In</button>
         </form>
-        <button onClick={register}>Register</button>
+        <button onClick={handleClick}>SIGN UP HERE</button>
+
       </div>
     );
 
