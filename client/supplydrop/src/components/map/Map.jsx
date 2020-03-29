@@ -3,6 +3,7 @@ import ReactMapGL, { NavigationControl } from "react-map-gl";
 import Geocoder from "react-mapbox-gl-geocoder";
 import CityInfo from "./CityInfo";
 import Pins from "./Pins";
+import config from "../../config/mapbox";
 import CITIES from "./cities.json";
 import './index.css';
 
@@ -10,7 +11,7 @@ import './index.css';
 //github.com/mapbox/mapbox-sdk-js/blob/master/docs/services.md#forwardgeocode
 
 const mapAccess = {
-  mapboxApiAccessToken: process.env.REACT_APP_MAPBOX_KEY
+  mapboxApiAccessToken: config.REACT_APP_MAPBOX_KEY
 };
 
 const queryParams = {
