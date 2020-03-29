@@ -20,14 +20,16 @@ const Login = ({history}) => {
         }, [history]
     )
 
-
+  const register = function(){
+    return(history.push('/signup'))
+  }
 
     const {currUser} = useContext(AuthContext); 
 
     if (currUser) {
         return <Redirect to='/' />;
     }
-
+    
     return (
       <div>
         <form onSubmit={handleLogin}>
@@ -45,7 +47,7 @@ const Login = ({history}) => {
           </div>
           <button type="submit">Log In</button>
         </form>
-        
+        <button onClick={register}>Register</button>
       </div>
     );
 
