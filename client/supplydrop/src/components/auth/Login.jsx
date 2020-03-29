@@ -30,7 +30,7 @@ const Login = ({history}) => {
     if (currUser) {
         return <Redirect to='/' />;
     }
-
+    
     return (
       <div>
         <form onSubmit={handleLogin}>
@@ -49,6 +49,7 @@ const Login = ({history}) => {
           <button type="submit">Log In</button>
         </form>
         <button onClick={handleClick}>SIGN UP HERE</button>
+
       </div>
     );
 
